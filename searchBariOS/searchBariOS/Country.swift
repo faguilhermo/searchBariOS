@@ -15,20 +15,26 @@ struct Country {
     
     static func getAllCountries() -> [Country] {
         return [
-            Country(continent:"Europe", title:"Denmark"),
-            Country(continent:"Europe", title:"United Kingdom"),
-            Country(continent:"Europe", title:"Germany"),
-            Country(continent:"Europe", title:"France"),
-            Country(continent:"Europe", title:"Belgium"),
+            Country(continent:"América", title:"Argentina"),
+            Country(continent:"América", title:"Brasil"),
+            Country(continent:"América", title:"Chile"),
+            Country(continent:"América", title:"Estados Unidos"),
+            Country(continent:"América", title:"Paraguai"),
+            Country(continent:"América", title:"México"),
             
-            Country(continent:"Asia", title:"Nepal"),
-            Country(continent:"Asia", title:"North Korea"),
-            Country(continent:"Asia", title:"Japan"),
+            Country(continent:"Europa", title:"Alemanha"),
+            Country(continent:"Europa", title:"Bélgica"),
+            Country(continent:"Europa", title:"Croácia"),
+            Country(continent:"Europa", title:"Dinamarca"),
+            Country(continent:"Europa", title:"Espanha"),
+            Country(continent:"Europa", title:"França"),
             
-            Country(continent:"Africa", title:"Algeria"),
-            Country(continent:"Africa", title:"Angola"),
-            Country(continent:"Africa", title:"Chad"),
-            Country(continent:"Africa", title:"Sudan")
+            Country(continent:"Africa", title:"África do Sul"),
+            Country(continent:"Africa", title:"Nigéria"),
+            Country(continent:"Africa", title:"Tunísia"),
+            Country(continent:"Africa", title:"Uganda"),
+            Country(continent:"Africa", title:"Senegal"),
+            Country(continent:"Africa", title:"Egito")
         ]
     }
 }
