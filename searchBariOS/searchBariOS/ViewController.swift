@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var filter = [Country]()
     let countries = Country.getAllCountries()
 
     lazy var tableView: UITableView = {
@@ -21,11 +22,43 @@ class ViewController: UIViewController {
         return tableView
     }()
 
+    lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        // search bar
+        searchController.searchBar.placeholder = "Procure por um país"
+        searchController.searchBar.sizeToFit()
+        searchController.searchBar.searchBarStyle = .prominent
+        searchController.searchBar.scopeButtonTitles = ["Todos", "Europa", "Asia", "Africa"]
+        searchController.searchBar.delegate = self
+
+        return searchController
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
         setupUI()
         setupAutolayout()
+    }
+
+    private func filterContent(search: String, in scope: String = "All") {
+        filter = countries.filter({ (country: Country) -> Bool in
+            let match = (scope == "All") || (country.continent == scope)
+        })
+    }
+}
+
+extension ViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        <#code#>
+    }
+}
+
+extension ViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        <#code#>
     }
 }
 
@@ -40,6 +73,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.categoryLabel.text = countries[indexPath.row].continent
 
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
 }
 
