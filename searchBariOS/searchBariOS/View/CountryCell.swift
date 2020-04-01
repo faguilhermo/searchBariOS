@@ -9,14 +9,16 @@
 import UIKit
 
 class CountryCell: UITableViewCell {
-    
+
+    /// The name of the object in the cell.
     let titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         return titleLabel
     }()
-    
+
+    /// The category in the same object in the cell.
     let categoryLabel: UILabel = {
         let categoryLabel = UILabel()
         categoryLabel.translatesAutoresizingMaskIntoConstraints = false

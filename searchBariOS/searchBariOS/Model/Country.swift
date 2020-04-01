@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct Country {
     let continent: String
     let title: String

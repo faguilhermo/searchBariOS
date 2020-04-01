@@ -10,9 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var filter = [Country]()
+    // MARK: - Variables and constants
+
+    // All filtered results
+    var filteredResults = [Country]()
+    // All countries
     let countries = Country.getAllCountries()
 
+    // MARK: - UI Elements
+
+    /// creates a  tabel view
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -23,11 +30,11 @@ class ViewController: UIViewController {
         return tableView
     }()
 
+    /// creates a search controller with search bar and 4 scope buttons
     lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        // search bar
         searchController.searchBar.placeholder = "Procure por um país"
         searchController.searchBar.sizeToFit()
         searchController.searchBar.searchBarStyle = .prominent
@@ -37,6 +44,8 @@ class ViewController: UIViewController {
         return searchController
     }()
 
+    // MARK: - Application lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
@@ -45,8 +54,13 @@ class ViewController: UIViewController {
         navigationItem.searchController = searchController
     }
 
+    // MARK: - Funcitions
+
+    /// Filters the content according to the user's research and the scope used.
+    /// - Parameter search: user's text  input.
+    /// - Parameter scope: scope selected by the user.
     private func filterContent(search: String, in scope: String = "Todos") {
-        filter = countries.filter({ (country: Country) -> Bool in
+        filteredResults = countries.filter({ (country: Country) -> Bool in
             let match = (scope == "Todos") || (country.continent == scope)
             if isSearchBarEmpty() {
                 return match
@@ -57,15 +71,21 @@ class ViewController: UIViewController {
         tableView.reloadData()
     }
 
+    /// A Boolean value that determines whether the search bar's text is empry.
+    /// - Returns: True if the search bar is empty or false if not.
     private func isSearchBarEmpty() -> Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
 
+    /// A Boolean value that determines whether the search is happening.
+    /// - Returns: True if the search is happening or false if not.
     private func isFiltering() -> Bool {
         let searchBarScopeIsFiltering = searchController.searchBar.selectedScopeButtonIndex != 0
         return searchController.isActive && (!isSearchBarEmpty() || searchBarScopeIsFiltering)
     }
 }
+
+// MARK: - Search bar delegate
 
 extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
@@ -84,6 +104,8 @@ extension ViewController: UISearchResultsUpdating {
     }
 }
 
+// MARK: - Table view delegate and data source
+
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -91,7 +113,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering() {
-            return filter.count
+            return filteredResults.count
         }
         return countries.count
     }
@@ -100,7 +122,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CountryCell else { return UITableViewCell() }
         let currentCountry: Country
         if isFiltering() {
-            currentCountry = filter[indexPath.row]
+            currentCountry = filteredResults[indexPath.row]
         } else {
             currentCountry = countries[indexPath.row]
         }
@@ -115,11 +137,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+// MARK: -  UI Setup
+
 extension ViewController {
+    /// Add all  UI elements on the main view.
     private func setupUI() {
         view.addSubview(tableView)
     }
 
+    /// Setup autolayout to all UI  elements.
     private func setupAutolayout(){
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true

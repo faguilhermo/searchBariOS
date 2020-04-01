@@ -60,14 +60,38 @@
 			children = (
 				0C453D6B24346FC6006B5B63 /* AppDelegate.swift */,
 				0C453D6D24346FC6006B5B63 /* SceneDelegate.swift */,
-				0C453D6F24346FC6006B5B63 /* ViewController.swift */,
-				0C453D7F2434712A006B5B63 /* Country.swift */,
-				0C453D802434712A006B5B63 /* CountryCell.swift */,
+				0C453D8424348ABB006B5B63 /* Model */,
+				0C453D8324348AB2006B5B63 /* View */,
+				0C453D8524348ADD006B5B63 /* Controller */,
 				0C453D7424346FC8006B5B63 /* Assets.xcassets */,
 				0C453D7624346FC8006B5B63 /* LaunchScreen.storyboard */,
 				0C453D7924346FC8006B5B63 /* Info.plist */,
 			);
 			path = searchBariOS;
+			sourceTree = "<group>";
+		};
+		0C453D8324348AB2006B5B63 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0C453D802434712A006B5B63 /* CountryCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0C453D8424348ABB006B5B63 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0C453D7F2434712A006B5B63 /* Country.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0C453D8524348ADD006B5B63 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0C453D6F24346FC6006B5B63 /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
