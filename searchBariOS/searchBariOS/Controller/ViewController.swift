@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         searchController.searchBar.placeholder = "Procure por um país"
         searchController.searchBar.sizeToFit()
         searchController.searchBar.searchBarStyle = .prominent
-        searchController.searchBar.scopeButtonTitles = ["Todos", "América", "Africa", "Europa"]
+        searchController.searchBar.scopeButtonTitles = ["Todos", "América", "África", "Europa", "Ásia", "Oceania"]
         searchController.searchBar.delegate = self
 
         return searchController
